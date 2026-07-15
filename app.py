@@ -92,6 +92,13 @@ falling_hearts_css = """
 # Inject the CSS and HTML into the app
 st.markdown(falling_hearts_css, unsafe_allow_html=True)
 
+# Add this wherever you want the player to appear
+st.write("---") # Adds a nice dividing line
+st.markdown("<h3 style='text-align: center;'>Press Play 🎶</h3>", unsafe_allow_html=True)
+
+# The audio player
+st.audio("our_song.mp3")
+
 # Center the title
 st.markdown("My Dearest SourPatch 💖", unsafe_allow_html=True)
 
@@ -140,7 +147,7 @@ if st.button("Click here for a surprise!"):
     my_bar.empty()
     
     # 2. The grand reveal
-    st.error("🚨 SYSTEM OVERLOAD: Unquantifiable Amount of Love Detected! 🚨")
+    st.error("🚨 Cooked!: I am completely obssessed and overly in love with you 🚨")
     st.markdown("### 💖♾️")
     
     # 3. Optional: Add an audio file of 'your song'
