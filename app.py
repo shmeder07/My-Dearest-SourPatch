@@ -1,4 +1,6 @@
 import streamlit as st
+import time 
+from PIL import Image
 
 # Set up the page tab
 st.set_page_config(page_title="For Audrey ❤️", page_icon="🌹", layout="centered")
@@ -9,33 +11,34 @@ page_theme = """
 /* Import beautiful Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
 
-/* 1. Hide Streamlit's default header, menu, and footer */
+/* Hide Streamlit's default header, menu, and footer */
 #MainMenu {visibility: hidden;}
 footer {visibility: hidden;}
 header {visibility: hidden;}
 
-/* 2. Soft background color */
+/* Soft background color */
 [data-testid="stAppViewContainer"] {
     background-color: #fff0f5; 
 }
 
-/* 3. Main Letter Text (Playfair Display) */
-p, li, span, div {
+/* Main Letter Text */
+.stMarkdown p, .stMarkdown li, .stMarkdown span {
     font-family: 'Playfair Display', serif !important;
     font-size: 18px !important;
     letter-spacing: 0.3px;
-    line-height: 1.8 !important; /* Adds nice spacing between lines */
+    line-height: 1.8 !important;
     color: #333333;
 }
 
-/* 4. Titles and Headers (Dancing Script) */
+/* Titles and Headers */
 h1, h2, h3 {
     font-family: 'Dancing Script', cursive !important;
     color: #d11141 !important;
     font-size: 45px !important;
+    text-align: center;
 }
 
-/* 5. Button Styling */
+/* Button Styling */
 .stButton>button {
     border-radius: 20px;
     border: 2px solid #d11141;
@@ -43,47 +46,41 @@ h1, h2, h3 {
     background-color: #ff4b4b;
     font-family: 'Playfair Display', serif !important;
     transition: 0.3s;
+    width: 100%; /* Makes button look better on mobile */
 }
 .stButton>button:hover {
     box-shadow: 0 0 15px #ff4b4b;
     border-color: #ff4b4b;
 }
 
-/* 6. Make the photo look like a polaroid/styled frame */
+/* Make the photo look like a polaroid */
 img {
     border-radius: 12px;
     box-shadow: 0 8px 16px rgba(0,0,0,0.15);
 }
 
 /* --- MOBILE RESPONSIVE DESIGN & POLISH --- */
-
-/* 1. Remove the huge gap at the very top of the Streamlit page */
 [data-testid="block-container"] {
     padding-top: 2rem !important;
     padding-bottom: 2rem !important;
-    max-width: 800px; /* Keeps the text from stretching too wide on a PC */
+    max-width: 800px; 
 }
 
-/* 2. Target mobile screens specifically */
 @media (max-width: 768px) {
-    /* Widen the text column on phones to use the full screen */
     [data-testid="block-container"] {
-        padding-left: 1.5rem !important;
-        padding-right: 1.5rem !important;
+        padding-left: 1.2rem !important;
+        padding-right: 1.2rem !important;
     }
     
-    /* Slightly scale down headers so they don't break onto awkward lines */
-    h1, h2, h3 {
-        font-size: 32px !important; 
+    h1 {
+        font-size: 38px !important; 
     }
     
-    /* Optimize body text for mobile reading */
-    p, li, span, div {
+    .stMarkdown p, .stMarkdown li, .stMarkdown span {
         font-size: 16px !important; 
-        text-align: left !important; /* Left alignment is much easier to read on mobile */
+        text-align: left !important; 
     }
     
-    /* Force the audio player to fit neatly within the phone screen width */
     audio {
         width: 100% !important;
         outline: none !important;
@@ -102,13 +99,12 @@ falling_hearts_css = """
     top: -10vh;
     z-index: 9999;
     animation: fall linear infinite;
-    pointer-events: none; /* Ensures you can still click things behind the hearts */
+    pointer-events: none; 
 }
 @keyframes fall {
     0% { top: -10vh; transform: translateX(0) rotate(0deg); opacity: 1; }
     100% { top: 110vh; transform: translateX(20px) rotate(360deg); opacity: 0; }
 }
-/* Different falling speeds, delays, and positions for a natural look */
 .h1 { left: 10%; animation-duration: 7s; animation-delay: 0s; }
 .h2 { left: 25%; animation-duration: 5s; animation-delay: 2s; }
 .h3 { left: 40%; animation-duration: 8s; animation-delay: 1s; }
@@ -124,23 +120,19 @@ falling_hearts_css = """
 <div class="heart h5">❤️</div>
 <div class="heart h6">💖</div>
 """
-
-# Inject the CSS and HTML into the app
 st.markdown(falling_hearts_css, unsafe_allow_html=True)
 
-# Add this wherever you want the player to appear
-st.write("---") # Adds a nice dividing line
-st.markdown("<h3 style='text-align: center;'>Press Play 🎶</h3>", unsafe_allow_html=True)
+# --- THE CONTENT ---
 
-# The audio player
+st.write("---") 
+st.markdown("<h3 style='text-align: center;'>Press Play 🎶</h3>", unsafe_allow_html=True)
 st.audio("our_song.mp3")
 
-# Center the title
-st.markdown("My Dearest SourPatch 💖", unsafe_allow_html=True)
+# Properly formatted title tag so the font applies!
+st.markdown("<h1>My Dearest SourPatch 💖</h1>", unsafe_allow_html=True)
 
 st.write("---")
 
-# Your love letter goes here
 st.write("""
 I hope you enjoyed this little surprise I put together, obviously you said yes which is why you are reading this, or maybe no in which case we’ll see, haha! I apologize for taking so long, but I was very nervous and scared that maybe you’d reject me. Truth is I really want this to work, it doesn't matter how long it takes. I want to grow beside you, because you also encourage and push me to be more. 
 
@@ -150,42 +142,31 @@ As I write this my heart races, you truly have always left me nervous from the f
 
 I am grateful to have met you and I really hope that this life lets me keep you. As delusional as it may seem, I will grow alongside you and we’ll achieve everything we set for our individual selves and together.
 
-
 I can now proudly call you my Novia!!!!
 
 **Te amo Audrey**, *I’ll cherish you for as long as I get too!*
-
 """)
 
-# Optional: Add a picture of you two! 
-# Just save an image as 'us.jpg' in the same folder and uncomment the next lines:
-from PIL import Image
-image = Image.open('us.jpg')
-st.image(image, caption='My favorite picture of us', use_container_width=True)
+# The Image
+try:
+    image = Image.open('us.jpg')
+    st.image(image, caption='My favorite picture of us', use_container_width=True)
+except FileNotFoundError:
+    st.warning("Please make sure 'us.jpg' is uploaded to the same folder!")
 
 st.write("---")
 
-import time # Add this to the very top of your file with your imports!
-
-# ... (your existing letter code) ...
-
+# The Surprise Button
 if st.button("Click here for a surprise!"):
-    # 1. A fun loading sequence
     progress_text = "Calculating exactly how much I love you..."
     my_bar = st.progress(0, text=progress_text)
 
     for percent_complete in range(100):
-        time.sleep(0.03) # Adjust speed here
+        time.sleep(0.03) 
         my_bar.progress(percent_complete + 1, text=progress_text)
     
-    # Clear the bar once it hits 100%
     time.sleep(1)
     my_bar.empty()
     
-    # 2. The grand reveal
     st.error("🚨 Cooked!: I am completely obssessed and overly in love with you 🚨")
-    st.markdown("### 💖♾️")
-    
-    # 3. Optional: Add an audio file of 'your song'
-    # To do this, upload an mp3 file to your GitHub folder and uncomment the line below:
-    # st.audio("our_song.mp3")
+    st.markdown("<h1>💖♾️</h1>", unsafe_allow_html=True)
