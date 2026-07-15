@@ -23,6 +23,7 @@ header {visibility: hidden;}
 p, li, span, div {
     font-family: 'Playfair Display', serif !important;
     font-size: 18px !important;
+    letter-spacing: 0.3px;
     line-height: 1.8 !important; /* Adds nice spacing between lines */
     color: #333333;
 }
@@ -52,6 +53,41 @@ h1, h2, h3 {
 img {
     border-radius: 12px;
     box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+/* --- MOBILE RESPONSIVE DESIGN & POLISH --- */
+
+/* 1. Remove the huge gap at the very top of the Streamlit page */
+[data-testid="block-container"] {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+    max-width: 800px; /* Keeps the text from stretching too wide on a PC */
+}
+
+/* 2. Target mobile screens specifically */
+@media (max-width: 768px) {
+    /* Widen the text column on phones to use the full screen */
+    [data-testid="block-container"] {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
+    
+    /* Slightly scale down headers so they don't break onto awkward lines */
+    h1, h2, h3 {
+        font-size: 32px !important; 
+    }
+    
+    /* Optimize body text for mobile reading */
+    p, li, span, div {
+        font-size: 16px !important; 
+        text-align: left !important; /* Left alignment is much easier to read on mobile */
+    }
+    
+    /* Force the audio player to fit neatly within the phone screen width */
+    audio {
+        width: 100% !important;
+        outline: none !important;
+    }
 }
 </style>
 """
