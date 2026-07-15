@@ -57,6 +57,41 @@ img {
 """
 st.markdown(page_theme, unsafe_allow_html=True)
 
+# --- FALLING HEARTS ANIMATION ---
+falling_hearts_css = """
+<style>
+.heart {
+    position: fixed;
+    font-size: 1.5rem;
+    top: -10vh;
+    z-index: 9999;
+    animation: fall linear infinite;
+    pointer-events: none; /* Ensures you can still click things behind the hearts */
+}
+@keyframes fall {
+    0% { top: -10vh; transform: translateX(0) rotate(0deg); opacity: 1; }
+    100% { top: 110vh; transform: translateX(20px) rotate(360deg); opacity: 0; }
+}
+/* Different falling speeds, delays, and positions for a natural look */
+.h1 { left: 10%; animation-duration: 7s; animation-delay: 0s; }
+.h2 { left: 25%; animation-duration: 5s; animation-delay: 2s; }
+.h3 { left: 40%; animation-duration: 8s; animation-delay: 1s; }
+.h4 { left: 60%; animation-duration: 6s; animation-delay: 3s; }
+.h5 { left: 75%; animation-duration: 9s; animation-delay: 0.5s; }
+.h6 { left: 90%; animation-duration: 7.5s; animation-delay: 2.5s; }
+</style>
+
+<div class="heart h1">❤️</div>
+<div class="heart h2">💖</div>
+<div class="heart h3">💕</div>
+<div class="heart h4">✨</div>
+<div class="heart h5">❤️</div>
+<div class="heart h6">💖</div>
+"""
+
+# Inject the CSS and HTML into the app
+st.markdown(falling_hearts_css, unsafe_allow_html=True)
+
 # Center the title
 st.markdown("My Dearest SourPatch 💖", unsafe_allow_html=True)
 
