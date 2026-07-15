@@ -75,7 +75,7 @@ I am grateful to have met you and I really hope that this life lets me keep you.
 
 I can now proudly call you my Novia!!!!
 
-Te amo Audrey, I’ll cherish you for as long as I get too!
+**Te amo Audrey**, *I’ll cherish you for as long as I get too!*
 
 """)
 
