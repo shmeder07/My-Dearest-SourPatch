@@ -1,5 +1,6 @@
 import streamlit as st
 import time 
+import random 
 from PIL import Image
 
 # Set up the page tab
@@ -30,6 +31,16 @@ header {visibility: hidden;}
     color: #333333;
 }
 
+/* Quote Block Styling */
+blockquote {
+    border-left: 3px solid #d11141;
+    padding-left: 15px;
+    color: #555555;
+    font-style: italic;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 /* Titles and Headers */
 h1, h2, h3 {
     font-family: 'Dancing Script', cursive !important;
@@ -46,7 +57,7 @@ h1, h2, h3 {
     background-color: #ff4b4b;
     font-family: 'Playfair Display', serif !important;
     transition: 0.3s;
-    width: 100%; /* Makes button look better on mobile */
+    width: 100%; 
 }
 .stButton>button:hover {
     box-shadow: 0 0 15px #ff4b4b;
@@ -128,7 +139,7 @@ st.write("---")
 st.markdown("<h3 style='text-align: center;'>Press Play 🎶</h3>", unsafe_allow_html=True)
 st.audio("our_song.mp3")
 
-# Properly formatted title tag so the font applies!
+# Properly formatted title tag
 st.markdown("<h1>My Dearest SourPatch 💖</h1>", unsafe_allow_html=True)
 
 st.write("---")
@@ -147,6 +158,10 @@ I can now proudly call you my Novia!!!!
 **Te amo Audrey**, *I’ll cherish you for as long as I get too!*
 """)
 
+st.markdown("""
+> *"Accept the things to which fate binds you, and love the people with whom fate brings you together, but do so with all your heart."* — Marcus Aurelius
+""")
+
 # The Image
 try:
     image = Image.open('us.jpg')
@@ -156,7 +171,37 @@ except FileNotFoundError:
 
 st.write("---")
 
-# The Surprise Button
+# --- MEMORY VAULT ---
+st.markdown("<h3 style='text-align: center;'>📸 A Few of My Favorite Things</h3>", unsafe_allow_html=True)
+
+with st.expander("My favorite memory so far..."):
+    st.write("Write a little blurb here about a specific date or moment that stands out to you.")
+    
+with st.expander("What I noticed the very first time we met..."):
+    st.write("Add another sweet note here!")
+
+with st.expander("Just another reason I appreciate you..."):
+    st.write("You can put a final thought, an inside joke, or another compliment in here!")
+
+st.write("---")
+
+# --- SIDE QUEST GENERATOR ---
+st.markdown("<h3 style='text-align: center;'>🎲 Our Next Adventure</h3>", unsafe_allow_html=True)
+st.write("Speaking of our random side quests... tap the button below to see what our next one is!")
+
+if st.button("Generate our next Side Quest!"):
+    quests = [
+        "Late night ice cream and a drive 🍦",
+        "Cook a brand new recipe together at home 🧑‍🍳",
+        "Go for a walk and find a new coffee shop ☕",
+        "Movie night, but you pick the movie and I bring the snacks 🍿",
+        "A surprise activity planned entirely by me! ✨"
+    ]
+    st.success(f"**Your Quest:** {random.choice(quests)}")
+
+st.write("---")
+
+# --- FINAL SURPRISE BUTTON ---
 if st.button("Click here for a surprise!"):
     progress_text = "Calculating exactly how much I love you..."
     my_bar = st.progress(0, text=progress_text)
