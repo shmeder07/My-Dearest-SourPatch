@@ -1,7 +1,34 @@
 import streamlit as st
 
 # Set up the page tab
-st.set_page_config(page_title="To My Beautiful Girl ❤️", page_icon="💌")
+st.set_page_config(page_title="For Audrey ❤️", page_icon="🌹")
+
+# Add custom CSS for background color and fonts
+page_theme = """
+<style>
+/* Changes the main background to a soft romantic pink */
+[data-testid="stAppViewContainer"] {
+    background-color: #fff0f5; 
+}
+/* Changes the title font color */
+h1 {
+    color: #d11141; 
+}
+/* Adds a subtle glow to the button */
+.stButton>button {
+    border-radius: 20px;
+    border: 2px solid #d11141;
+    color: white;
+    background-color: #ff4b4b;
+    transition: 0.3s;
+}
+.stButton>button:hover {
+    box-shadow: 0 0 15px #ff4b4b;
+    border-color: #ff4b4b;
+}
+</style>
+"""
+st.markdown(page_theme, unsafe_allow_html=True)
 
 # Center the title
 st.markdown("My Dearest SourPatch 💖", unsafe_allow_html=True)
@@ -33,7 +60,27 @@ st.image(image, caption='My favorite picture of us', use_container_width=True)
 
 st.write("---")
 
-# A fun interactive element
-if st.button("For You"):
-    st.balloons() # This triggers a cool balloon animation on screen!
-    st.success("I love you endlessly! 💕")
+import time # Add this to the very top of your file with your imports!
+
+# ... (your existing letter code) ...
+
+if st.button("Click here for a surprise!"):
+    # 1. A fun loading sequence
+    progress_text = "Calculating exactly how much I love you..."
+    my_bar = st.progress(0, text=progress_text)
+
+    for percent_complete in range(100):
+        time.sleep(0.03) # Adjust speed here
+        my_bar.progress(percent_complete + 1, text=progress_text)
+    
+    # Clear the bar once it hits 100%
+    time.sleep(1)
+    my_bar.empty()
+    
+    # 2. The grand reveal
+    st.error("🚨 SYSTEM OVERLOAD: Unquantifiable Amount of Love Detected! 🚨")
+    st.markdown("### 💖♾️")
+    
+    # 3. Optional: Add an audio file of 'your song'
+    # To do this, upload an mp3 file to your GitHub folder and uncomment the line below:
+    # st.audio("our_song.mp3")
