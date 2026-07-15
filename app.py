@@ -1,30 +1,57 @@
 import streamlit as st
 
 # Set up the page tab
-st.set_page_config(page_title="For Audrey ❤️", page_icon="🌹")
+st.set_page_config(page_title="For Audrey ❤️", page_icon="🌹", layout="centered")
 
-# Add custom CSS for background color and fonts
+# --- CUSTOM CSS: FONTS, STYLING, AND CLEANUP ---
 page_theme = """
 <style>
-/* Changes the main background to a soft romantic pink */
+/* Import beautiful Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+/* 1. Hide Streamlit's default header, menu, and footer */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+/* 2. Soft background color */
 [data-testid="stAppViewContainer"] {
     background-color: #fff0f5; 
 }
-/* Changes the title font color */
-h1 {
-    color: #d11141; 
+
+/* 3. Main Letter Text (Playfair Display) */
+p, li, span, div {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 18px !important;
+    line-height: 1.8 !important; /* Adds nice spacing between lines */
+    color: #333333;
 }
-/* Adds a subtle glow to the button */
+
+/* 4. Titles and Headers (Dancing Script) */
+h1, h2, h3 {
+    font-family: 'Dancing Script', cursive !important;
+    color: #d11141 !important;
+    font-size: 45px !important;
+}
+
+/* 5. Button Styling */
 .stButton>button {
     border-radius: 20px;
     border: 2px solid #d11141;
-    color: white;
+    color: white !important;
     background-color: #ff4b4b;
+    font-family: 'Playfair Display', serif !important;
     transition: 0.3s;
 }
 .stButton>button:hover {
     box-shadow: 0 0 15px #ff4b4b;
     border-color: #ff4b4b;
+}
+
+/* 6. Make the photo look like a polaroid/styled frame */
+img {
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
 }
 </style>
 """
