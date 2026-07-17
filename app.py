@@ -1,6 +1,7 @@
 import streamlit as st
 import time
 from PIL import Image
+from datetime import datetime
 
 # Set up the page tab
 st.set_page_config(page_title="For Audrey ❤️", page_icon="🌹", layout="centered")
@@ -14,23 +15,59 @@ page_theme = """
 footer {visibility: hidden;}
 header {visibility: hidden;}
 
-[data-testid="stAppViewContainer"] { background-color: #fff0f5; }
+/* The Heartbeat Animation for the Music Player */
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); color: #ff4b4b; }
+    100% { transform: scale(1); }
+}
+.pulse-text {
+    animation: heartbeat 1.5s infinite;
+    text-align: center;
+    color: #d11141;
+}
 
+/* Frosted Glass Background Update */
+[data-testid="stAppViewContainer"] { 
+    background-image: url("https://images.unsplash.com/photo-1532932371123-928bc0091ec0?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bG92ZXxlbnwwfHwwfHx8MA%3D%3D"); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+[data-testid="block-container"] {
+    background-color: rgba(255, 255, 255, 0.85) !important; /* Semi-transparent white card */
+    backdrop-filter: blur(10px); /* Blurs the background behind the card */
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(209, 17, 65, 0.15); /* Soft red shadow */
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+    max-width: 800px; 
+}
+
+/* Pitch Black Text for Perfect Legibility */
 .stMarkdown p, .stMarkdown li, .stMarkdown span {
     font-family: 'Playfair Display', serif !important;
     font-size: 18px !important;
+    font-weight: 500 !important; 
     letter-spacing: 0.3px;
     line-height: 1.8 !important;
-    color: #333333;
+    color: #000000 !important; 
 }
 
+/* Classic Manuscript Styling for the Quote */
 blockquote {
-    border-left: 3px solid #d11141;
-    padding-left: 15px;
-    color: #555555;
+    background-color: rgba(255, 250, 251, 0.9);
+    border-left: 4px solid #d11141;
+    padding: 20px 25px;
+    color: #111111 !important;
     font-style: italic;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    font-size: 20px !important;
+    box-shadow: 2px 4px 10px rgba(209, 17, 65, 0.1);
+    border-radius: 0 12px 12px 0;
+    margin: 30px 0;
 }
 
 h1, h2, h3 {
@@ -40,6 +77,7 @@ h1, h2, h3 {
     text-align: center;
 }
 
+/* Button Styling */
 .stButton>button {
     border-radius: 20px;
     border: 2px solid #d11141;
@@ -49,9 +87,17 @@ h1, h2, h3 {
     transition: 0.3s;
     width: 100%; 
 }
+
 .stButton>button:hover {
     box-shadow: 0 0 15px #ff4b4b;
-    border-color: #ff4b4b;
+    border-color: #d11141;
+}
+
+/* Keeps text visible when the button is actively being clicked */
+.stButton>button:focus, .stButton>button:active {
+    color: white !important;
+    background-color: #d11141 !important;
+    border-color: #d11141 !important;
 }
 
 img {
@@ -61,7 +107,7 @@ img {
 
 /* Fix the invisible image captions */
 [data-testid="caption"], [data-testid="stImageCaption"], figcaption {
-    color: #333333 !important;
+    color: #111111 !important;
     font-family: 'Playfair Display', serif !important;
     font-size: 16px !important;
     font-style: italic;
@@ -69,17 +115,12 @@ img {
     text-align: center;
 }
 
-/* Mobile Responsive Design */
-[data-testid="block-container"] {
-    padding-top: 2rem !important;
-    padding-bottom: 2rem !important;
-    max-width: 800px; 
-}
-
+/* Mobile Responsive Design Tweaks */
 @media (max-width: 768px) {
-    [data-testid="block-container"] {
-        padding-left: 1.2rem !important;
-        padding-right: 1.2rem !important;
+    [data-testid="block-container"], [data-testid="stMainBlockContainer"] {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+        width: 95% !important;
     }
     h1 { font-size: 38px !important; }
     .stMarkdown p, .stMarkdown li, .stMarkdown span {
@@ -90,6 +131,18 @@ img {
 </style>
 """
 st.markdown(page_theme, unsafe_allow_html=True)
+
+# --- GLOBAL FALLING HEARTS ANIMATION ---
+falling_hearts_css = """
+<style>
+.heart { position: fixed; font-size: 1.5rem; top: -10vh; z-index: 9999; animation: fall linear infinite; pointer-events: none; }
+@keyframes fall { 0% { top: -10vh; transform: translateX(0) rotate(0deg); opacity: 1; } 100% { top: 110vh; transform: translateX(20px) rotate(360deg); opacity: 0; } }
+.h1 { left: 10%; animation-duration: 7s; animation-delay: 0s; } .h2 { left: 25%; animation-duration: 5s; animation-delay: 2s; } .h3 { left: 40%; animation-duration: 8s; animation-delay: 1s; } .h4 { left: 60%; animation-duration: 6s; animation-delay: 3s; } .h5 { left: 75%; animation-duration: 9s; animation-delay: 0.5s; } .h6 { left: 90%; animation-duration: 7.5s; animation-delay: 2.5s; }
+</style>
+<div class="heart h1">❤️</div><div class="heart h2">💖</div><div class="heart h3">💕</div><div class="heart h4">✨</div><div class="heart h5">❤️</div><div class="heart h6">💖</div>
+"""
+st.markdown(falling_hearts_css, unsafe_allow_html=True)
+
 
 # --- SESSION STATE TO TRACK PAGES ---
 if 'page' not in st.session_state:
@@ -104,14 +157,15 @@ def prev_page():
 def load_image(image_name, caption_text):
     try:
         img = Image.open(image_name)
-        st.image(img, caption=caption_text, use_container_width=True)
+        col1, col2, col3 = st.columns([1, 4, 1])
+        with col2:
+            st.image(img, caption=caption_text, use_container_width=True)
     except FileNotFoundError:
         st.warning(f"Upload '{image_name}' to see the photo here!")
 
 # --- GLOBAL AUDIO PLAYER ---
-# This stays outside the page conditions so the music doesn't cut out!
 st.write("---")
-st.markdown("<h3 style='text-align: center;'>Press Play 🎶</h3>", unsafe_allow_html=True)
+st.markdown("<h3 class='pulse-text'>Press Play 🎶</h3>", unsafe_allow_html=True)
 st.audio("our_song.mp3")
 st.write("---")
 
@@ -154,6 +208,11 @@ elif st.session_state.page == 2:
     """)
     
     load_image('us2.jpg', 'My favorite side quest partner')
+
+    start_date = datetime(2025, 11, 12) 
+    days_together = (datetime.now() - start_date).days
+
+    st.markdown(f"<h3 style='font-size: 24px;'>{days_together} days since I fell for you. Literally!</h3>", unsafe_allow_html=True)
     
     st.write("---")
     col1, col2 = st.columns(2)
@@ -180,17 +239,7 @@ elif st.session_state.page == 3:
     
     st.write("---")
     
-    if st.button("Click here for a final surprise!"):
-        falling_hearts_css = """
-        <style>
-        .heart { position: fixed; font-size: 1.5rem; top: -10vh; z-index: 9999; animation: fall linear infinite; pointer-events: none; }
-        @keyframes fall { 0% { top: -10vh; transform: translateX(0) rotate(0deg); opacity: 1; } 100% { top: 110vh; transform: translateX(20px) rotate(360deg); opacity: 0; } }
-        .h1 { left: 10%; animation-duration: 7s; animation-delay: 0s; } .h2 { left: 25%; animation-duration: 5s; animation-delay: 2s; } .h3 { left: 40%; animation-duration: 8s; animation-delay: 1s; } .h4 { left: 60%; animation-duration: 6s; animation-delay: 3s; } .h5 { left: 75%; animation-duration: 9s; animation-delay: 0.5s; } .h6 { left: 90%; animation-duration: 7.5s; animation-delay: 2.5s; }
-        </style>
-        <div class="heart h1">❤️</div><div class="heart h2">💖</div><div class="heart h3">💕</div><div class="heart h4">✨</div><div class="heart h5">❤️</div><div class="heart h6">💖</div>
-        """
-        st.markdown(falling_hearts_css, unsafe_allow_html=True)
-        
+    if st.button("Current Love Status!"):
         progress_text = "Calculating exactly how much I love you..."
         my_bar = st.progress(0, text=progress_text)
         for percent_complete in range(100):
