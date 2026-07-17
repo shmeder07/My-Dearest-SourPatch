@@ -188,7 +188,7 @@ elif st.session_state.page == 1:
     I hope you enjoyed this little surprise I put together, obviously you said yes which is why you are reading this, or maybe no in which case we’ll see, haha! I apologize for taking so long, but I was very nervous and scared that maybe you’d reject me. Truth is I really want this to work, it doesn't matter how long it takes. I want to grow beside you, because you also encourage and push me to be more. 
     """)
     
-    load_image('us.jpg', 'Where it all started...')
+    load_image('us.jpg', 'The Way We Look at Each Other...')
     
     st.write("---")
     col1, col2 = st.columns(2)
@@ -223,7 +223,7 @@ elif st.session_state.page == 2:
 
 # PAGE 3: THE FINALE
 elif st.session_state.page == 3:
-    st.markdown("<h1>Chapter 3: Novia</h1>", unsafe_allow_html=True)
+    st.markdown("<h1>Chapter 3: My Beautiful Girl</h1>", unsafe_allow_html=True)
     
     st.write("""
     I am grateful to have met you and I really hope that this life lets me keep you. As delusional as it may seem, I will grow alongside you and we’ll achieve everything we set for our individual selves and together.
